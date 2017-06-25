@@ -9,13 +9,14 @@
 #
 # Details at https://ownyourbits.com/2017/06/24/debian-build-environment-in-a-docker-container/
 
-FROM ownyourbits/mmake:latest
+FROM ownyourbits/mmake-arm
 
 LABEL description="Debian package development environment"
 MAINTAINER Ignacio Núñez Hernanz <nacho@ownyourbits.com>
 
 # install packages
-RUN sudo sh -c "echo deb-src http://httpredir.debian.org/debian stretch main >> /etc/apt/sources.list"; \
+RUN sudo sh -c "echo deb-src http://mirrordirector.raspbian.org/raspbian/ stretch main contrib non-free rpi >> /etc/apt/sources.list"; \
+    sudo sh -c "echo deb     http://mirrordirector.raspbian.org/raspbian/ stretch main contrib non-free rpi >> /etc/apt/sources.list"; \
     sudo apt-get update;\
     DEBIAN_FRONTEND=noninteractive sudo apt-get install --no-install-recommends -y dpkg-dev devscripts dh-make lintian fakeroot quilt eatmydata vim; \
     sudo apt-get autoremove -y; sudo apt-get clean; sudo rm /var/lib/apt/lists/*; \

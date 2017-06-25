@@ -24,7 +24,7 @@
 # Details at https://ownyourbits.com/2017/06/24/debian-build-environment-in-a-docker-container/
 
 
-FROM ownyourbits/debiandev:latest
+FROM ownyourbits/raspbiandev:latest
 
 LABEL description="PHP build environment"
 MAINTAINER Ignacio Núñez Hernanz <nacho@ownyourbits.com>
@@ -32,7 +32,7 @@ MAINTAINER Ignacio Núñez Hernanz <nacho@ownyourbits.com>
 ## Get source
 RUN sudo apt-get update;\
     mkdir -p /src; cd /src; \
-    apt-get source -t stretch php7.0-fpm; 
+    apt-get source php7.0-fpm; 
 
 ## PHP build dependencies
 RUN sudo apt-get update;\
